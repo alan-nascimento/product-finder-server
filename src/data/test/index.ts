@@ -1,1 +1,2 @@
-export * from './mock-http-request';
+export * from './mock-http';
+export * from './mock-remote-search-products-result';
