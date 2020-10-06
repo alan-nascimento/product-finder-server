@@ -18,8 +18,9 @@
   "plugins": ["@typescript-eslint", "prettier"],
   "rules": {
     "prettier/prettier": "error",
-    "class-methods-use-this": "off",
     "import/extensions": "off",
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+    "class-methods-use-this": "off",
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }
