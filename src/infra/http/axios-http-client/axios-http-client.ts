@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { HttpRequest, HttpClient } from '../../../data/protocols';
+import { HttpRequest, HttpClient } from '@/data/protocols';
 
 export class AxiosHttpClient implements HttpClient {
   async request(data: HttpRequest): Promise<void> {

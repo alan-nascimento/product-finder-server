@@ -1,6 +1,6 @@
-import * as faker from 'faker';
+import faker from 'faker';
 
-import { HttpRequest } from '../protocols';
+import { HttpRequest } from '@/data/protocols';
 
 export const mockHttpRequest = (): HttpRequest => ({
   url: faker.internet.url(),
