@@ -4,7 +4,11 @@
   "description": "A simple REST API to search for a list of products and provide details of the selected product.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:ci": "npm test -- --coverage --runInBand",
+    "test:watch": "npm test -- --watch",
+    "test:staged": "npm test -- --findRelatedTests",
+    "test:verbose": "jest --passWithNoTests"
   },
   "repository": {
     "type": "git",
