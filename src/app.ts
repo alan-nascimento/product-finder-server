@@ -1,10 +1,21 @@
 import express from 'express';
 
+import routes from './routes';
+
 class App {
-  public server: express.Application;
+  public server: express.Application = express();
 
   constructor() {
-    this.server = express();
+    this.middlewares();
+    this.router();
+  }
+
+  private middlewares(): void {
+    this.server.use(express.json());
+  }
+
+  private router(): void {
+    this.server.use('/api', routes);
   }
 }
 
