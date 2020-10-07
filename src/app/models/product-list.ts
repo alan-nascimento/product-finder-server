@@ -14,7 +14,7 @@ export type Product = {
   title: string;
   price: Price;
   picture: string;
-  city: string;
+  city?: string;
   condition: string;
   free_shipping: boolean;
   description?: string;
