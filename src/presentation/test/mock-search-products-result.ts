@@ -5,7 +5,7 @@ import {
   SearchProductsResultItemModel,
 } from '@/domain/models';
 
-export const mockRemoteSearchProductsResulItemtModel = (): SearchProductsResultItemModel => ({
+export const mockSearchProductsResulItemModel = (): SearchProductsResultItemModel => ({
   id: faker.random.uuid(),
   title: faker.random.words(),
   price: {
@@ -18,16 +18,16 @@ export const mockRemoteSearchProductsResulItemtModel = (): SearchProductsResultI
   free_shipping: faker.random.boolean(),
 });
 
-export const mockRemoteSearchProductsResultModel = (): SearchProductsResultModel => ({
+export const mockSearchProductsResultModel = (): SearchProductsResultModel => ({
   author: {
     name: faker.name.firstName(),
     lastname: faker.name.lastName(),
   },
   categories: faker.random.arrayElements(),
   items: [
-    mockRemoteSearchProductsResulItemtModel(),
-    mockRemoteSearchProductsResulItemtModel(),
-    mockRemoteSearchProductsResulItemtModel(),
-    mockRemoteSearchProductsResulItemtModel(),
+    mockSearchProductsResulItemModel(),
+    mockSearchProductsResulItemModel(),
+    mockSearchProductsResulItemModel(),
+    mockSearchProductsResulItemModel(),
   ],
 });

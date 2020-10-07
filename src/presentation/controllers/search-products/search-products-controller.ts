@@ -1,7 +1,7 @@
 import { HttpClient } from '@/data/protocols';
 import { SearchProductsResult } from '@/domain/usecases';
 
-export class RemoteSearchProductsResult implements SearchProductsResult {
+export class SearchProductsController implements SearchProductsResult {
   constructor(
     private readonly url: string,
     private readonly params: string,

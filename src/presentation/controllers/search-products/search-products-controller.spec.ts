@@ -1,21 +1,19 @@
 import faker from 'faker';
 
+import { HttpClientSpy } from '@/data/test';
 import { HttpStatusCode } from '@/data/protocols';
-import {
-  HttpClientSpy,
-  mockRemoteSearchProductsResultModel,
-} from '@/data/test';
+import { mockSearchProductsResultModel } from '@/presentation/test';
 
-import { RemoteSearchProductsResult } from './remote-search-products-result';
+import { SearchProductsController } from './search-products-controller';
 
 type SutTypes = {
-  sut: RemoteSearchProductsResult;
+  sut: SearchProductsController;
   httpClientSpy: HttpClientSpy;
 };
 
 const makeSut = (url = faker.internet.url(), params: string): SutTypes => {
   const httpClientSpy = new HttpClientSpy();
-  const sut = new RemoteSearchProductsResult(url, params, httpClientSpy);
+  const sut = new SearchProductsController(url, params, httpClientSpy);
 
   return {
     sut,
@@ -23,7 +21,7 @@ const makeSut = (url = faker.internet.url(), params: string): SutTypes => {
   };
 };
 
-describe('RemoteSearchProductsResult', () => {
+describe('SearchProductsController', () => {
   it('should call HttpClient with correct URL and Method', async () => {
     const url = faker.internet.url();
     const params = faker.random.words();
@@ -32,7 +30,7 @@ describe('RemoteSearchProductsResult', () => {
 
     httpClientSpy.response = {
       statusCode: HttpStatusCode.ok,
-      body: mockRemoteSearchProductsResultModel(),
+      body: mockSearchProductsResultModel(),
     };
 
     await sut.search();
