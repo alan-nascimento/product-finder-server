@@ -1,43 +1,29 @@
 import { Request, Response } from 'express';
 
 import http from '@/config/http-client';
-import { Author } from '../models';
+import { ProductList } from '@/app/models';
+import { makeProductList } from '@/app/factories';
 
 class SearchController {
-  public async search(req: Request, res: Response): Promise<Response> {
+  public async search(
+    req: Request,
+    res: Response
+  ): Promise<Response<ProductList>> {
     try {
       const { data } = await http.get('/sites/MLU/search', {
-        params: { q: req.query.search },
+        params: {
+          q: req.query.search,
+          limit: 4,
+        },
       });
 
-      if (!data.results.length) {
-        return res.status(204).json(data.results);
+      if (!data.paging.total) {
+        return res.status(200).json({});
       }
 
-      const result = {
-        author: new Author('Alan', 'Nascimento'),
-        categories: data.filters[0].values[0].path_from_root.map(
-          (item: any) => item.name
-        ),
-        items: data.results.slice(0, 4).map((item: any) => ({
-          id: item.id,
-          title: item.title,
-          price: {
-            id: item.id,
-            currency: item.currency_id,
-            amount: item.installments.amount,
-            decimals: 'TO_IMPLEMENT',
-          },
-          picture: item.thumbnail,
-          condition: item.condition,
-          free_shipping: item.shipping.free_shipping,
-          city: item.address.city_name,
-        })),
-      };
-
-      return res.status(200).json(result);
+      return res.status(200).json(makeProductList(data));
     } catch (error) {
-      return res.status(500).json(error);
+      return res.status(500).json(error.message);
     }
   }
 }
