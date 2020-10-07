@@ -1,13 +1,15 @@
-import axios from 'axios';
+import { Request, Response } from 'express';
+
+import http from '@/config/http-client';
 
 class SearchController {
-  public async search(req: any, res: any): Promise<any> {
+  public async search(req: Request, res: Response): Promise<Response> {
     try {
-      const { data } = await axios.get(
-        `https://api.mercadolibre.com/sites/MLA/search?q=anyquery`
-      );
+      const response = await http.get('/sites/MLA/search', {
+        params: { q: req.query.search },
+      });
 
-      return res.json(data);
+      return res.status(200).json(response.data);
     } catch (err) {
       return res.status(500).json(err);
     }
