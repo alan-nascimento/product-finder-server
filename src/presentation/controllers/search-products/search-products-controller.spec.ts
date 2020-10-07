@@ -2,9 +2,9 @@ import faker from 'faker';
 
 import { HttpClientSpy } from '@/data/test';
 import { HttpStatusCode } from '@/data/protocols';
+import { ok, serverError } from '@/presentation/helpers';
 import { mockSearchProductsResultModel } from '@/presentation/test';
 
-import { serverError } from '@/presentation/helpers/http/http-helper';
 import { SearchProductsController } from './search-products-controller';
 
 type SutTypes = {
@@ -12,7 +12,10 @@ type SutTypes = {
   httpClientSpy: HttpClientSpy;
 };
 
-const makeSut = (params: string, url = faker.internet.url()): SutTypes => {
+const makeSut = (
+  params = faker.random.words(),
+  url = faker.internet.url()
+): SutTypes => {
   const httpClientSpy = new HttpClientSpy();
   const sut = new SearchProductsController(url, params, httpClientSpy);
 
@@ -42,8 +45,7 @@ describe('SearchProductsController', () => {
   });
 
   it('should throw ServerError if HttpClient returns any error', async () => {
-    const params = faker.random.words();
-    const { sut, httpClientSpy } = makeSut(params);
+    const { sut, httpClientSpy } = makeSut();
 
     jest
       .spyOn(httpClientSpy, 'request')
@@ -52,5 +54,13 @@ describe('SearchProductsController', () => {
     const promise = await sut.search();
 
     expect(promise).toEqual(serverError(new Error()));
+  });
+
+  it('should return 200 if HttpClient returns', async () => {
+    const { sut, httpClientSpy } = makeSut();
+
+    const httpResponse = await sut.search();
+
+    expect(httpResponse).toEqual(ok(httpClientSpy.response.body));
   });
 });
