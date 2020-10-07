@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 
 import http from '@/config/http-client';
+import { Author } from '../models';
 
 class SearchController {
   public async search(req: Request, res: Response): Promise<Response> {
@@ -14,10 +15,7 @@ class SearchController {
       }
 
       const result = {
-        author: {
-          name: 'Alan',
-          lastname: 'Nascimento',
-        },
+        author: new Author('Alan', 'Nascimento'),
         categories: data.filters[0].values[0].path_from_root.map(
           (item: any) => item.name
         ),
