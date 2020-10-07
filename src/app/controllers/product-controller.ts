@@ -2,8 +2,9 @@ import axios from 'axios';
 import { Request, Response } from 'express';
 
 import http from '@/config/http-client';
+import { Controller } from '@/app/protocols';
 
-class ProductController {
+class ProductController implements Controller {
   public async handle(req: Request, res: Response): Promise<Response> {
     try {
       const { id } = req.params;

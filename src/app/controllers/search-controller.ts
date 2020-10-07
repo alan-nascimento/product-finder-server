@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
 
 import http from '@/config/http-client';
+import { Controller } from '@/app/protocols';
 import { ProductList } from '@/app/models';
 import { makeProductList } from '@/app/factories';
 
-class SearchController {
-  public async search(
+class SearchController implements Controller {
+  public async handle(
     req: Request,
     res: Response
   ): Promise<Response<ProductList>> {
