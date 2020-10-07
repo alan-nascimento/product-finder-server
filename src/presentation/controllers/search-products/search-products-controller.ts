@@ -1,5 +1,6 @@
-import { HttpClient } from '@/data/protocols';
+import { ok, serverError } from '@/presentation/helpers/http/http-helper';
 import { SearchProductsResult } from '@/domain/usecases';
+import { HttpClient, HttpResponse } from '@/data/protocols';
 
 export class SearchProductsController implements SearchProductsResult {
   constructor(
@@ -8,13 +9,17 @@ export class SearchProductsController implements SearchProductsResult {
     private readonly httpClient: HttpClient<SearchProductsResult.Model>
   ) {}
 
-  async search(): Promise<SearchProductsResult.Model> {
-    await this.httpClient.request({
-      url: this.url,
-      method: 'GET',
-      params: this.params,
-    });
+  async search(): Promise<HttpResponse<SearchProductsResult.Model>> {
+    try {
+      const httpResponse = await this.httpClient.request({
+        url: this.url,
+        method: 'GET',
+        params: this.params,
+      });
 
-    return Promise.resolve(null);
+      return ok(httpResponse.body);
+    } catch (err) {
+      return serverError(err);
+    }
   }
 }

@@ -8,6 +8,7 @@ export type HttpRequest = {
 
 export enum HttpStatusCode {
   ok = 200,
+  notFound = 404,
 }
 
 export type HttpResponse<T = any> = {

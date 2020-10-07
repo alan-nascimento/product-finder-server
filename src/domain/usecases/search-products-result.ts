@@ -1,7 +1,8 @@
+import { HttpResponse } from '@/data/protocols';
 import { SearchProductsResultModel } from '@/domain/models';
 
 export interface SearchProductsResult {
-  search: () => Promise<SearchProductsResult.Model>;
+  search: () => Promise<HttpResponse<SearchProductsResult.Model>>;
 }
 
 export namespace SearchProductsResult {
