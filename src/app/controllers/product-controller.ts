@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Request, Response } from 'express';
 
-import http from '@/config/http-client';
+import { http } from '@/config';
 import { Controller } from '@/app/protocols';
 
 class ProductController implements Controller {

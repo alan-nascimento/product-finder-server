@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
 
-import http from '@/config/http-client';
+import { http } from '@/config';
 import { Controller } from '@/app/protocols';
 import { ProductList } from '@/app/models';
 import { makeProductList } from '@/app/factories';
 
-class SearchController implements Controller {
+class SearchProductsController implements Controller {
   public async handle(
     req: Request,
     res: Response
@@ -29,4 +29,4 @@ class SearchController implements Controller {
   }
 }
 
-export default new SearchController();
+export default new SearchProductsController();
