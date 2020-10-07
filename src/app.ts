@@ -1,9 +1,12 @@
+import 'dotenv/config';
+
+import cors from 'cors';
 import express from 'express';
 
 import routes from './routes';
 
 class App {
-  public server: express.Application = express();
+  public server = express();
 
   constructor() {
     this.middlewares();
@@ -11,6 +14,7 @@ class App {
   }
 
   private middlewares(): void {
+    this.server.use(cors());
     this.server.use(express.json());
   }
 
