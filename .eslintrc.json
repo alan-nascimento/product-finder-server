@@ -20,6 +20,7 @@
   "rules": {
     "no-shadow": "off",
     "camelcase": "off",
+    "no-console": ["warn", { "allow": ["log"] }],
     "prettier/prettier": "error",
     "import/extensions": "off",
     "import/no-unresolved": "off",

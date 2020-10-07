@@ -3,10 +3,6 @@ import { Product, ProductList } from '@/app/models';
 export const makeProductList = (data: any): ProductList => {
   const makeCategories = (data: any) => data.map((item: any) => item.name);
 
-  const removeDecimals = (value: number): number => {
-    return Number(value.toString().split('.')[0]);
-  };
-
   const getDecimals = (value: number): number => {
     if (Math.floor(value) === value) return 0;
 
@@ -19,7 +15,7 @@ export const makeProductList = (data: any): ProductList => {
       title: item.title,
       price: {
         currency: item.currency_id,
-        amount: removeDecimals(item.installments.amount),
+        amount: Math.trunc(item.installments.amount),
         decimals: getDecimals(item.installments.amount),
       },
       picture: item.thumbnail,
