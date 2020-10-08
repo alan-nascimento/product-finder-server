@@ -18,9 +18,7 @@ class SearchProductsController implements Controller {
         },
       });
 
-      if (!data.paging.total) {
-        return res.status(200).json({});
-      }
+      if (!data.paging.total) return res.status(200).json({});
 
       return res.status(200).json(makeProductList(data));
     } catch (error) {

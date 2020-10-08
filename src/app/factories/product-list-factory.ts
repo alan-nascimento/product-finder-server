@@ -17,8 +17,8 @@ export const makeProductList = (data: SearchProductsResult): ProductList => {
         title: item.title,
         price: {
           currency: item.currency_id,
-          amount: Math.trunc(item.installments.amount),
-          decimals: makeDecimals(item.installments.amount),
+          amount: Math.trunc(item.price),
+          decimals: makeDecimals(item.price),
         },
         picture: item.thumbnail,
         condition: item.condition,

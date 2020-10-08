@@ -16,9 +16,7 @@ export type Result = {
   thumbnail: string;
   condition: string;
   currency_id: string;
-  installments: {
-    amount: number;
-  };
+  price: number;
   shipping: {
     free_shipping: boolean;
   };
