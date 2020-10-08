@@ -1,6 +1,6 @@
 {
   "name": "product-finder-server",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A simple REST API to search for a list of products and provide details of the selected product.",
   "main": "index.js",
   "scripts": {
