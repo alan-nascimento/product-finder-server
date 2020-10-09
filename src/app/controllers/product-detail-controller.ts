@@ -22,7 +22,7 @@ class ProductController implements Controller {
 
       return res.status(200).json(response);
     } catch (error) {
-      return res.status(500).json(error.message);
+      return res.status(422).json(error.message);
     }
   }
 }

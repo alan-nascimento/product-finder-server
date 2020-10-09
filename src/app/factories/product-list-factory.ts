@@ -3,7 +3,7 @@ import { Category, Result, SearchProductsResult } from '@/app/protocols';
 
 export const makeProductList = (data: SearchProductsResult): ProductList => {
   const makeCategories = (categories: Category[]) => {
-    return categories.map((item: Category) => item.name);
+    return categories?.map((item: Category) => item.name);
   };
 
   const makeDecimals = (value: number): number => {
@@ -33,7 +33,7 @@ export const makeProductList = (data: SearchProductsResult): ProductList => {
       name: 'Alan',
       lastname: 'Nascimento',
     },
-    categories: makeCategories(data.filters[0].values[0].path_from_root),
+    categories: makeCategories(data.filters[0]?.values[0].path_from_root),
     items: makeItems(data.results),
   };
 };
