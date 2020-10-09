@@ -9,6 +9,12 @@ export const makeProductDetail = ({
     return Number(value.toString().split('.')[1]) || 0;
   };
 
+  const conditions = new Map([
+    ['new', 'Nuevo'],
+    ['not_specified', 'No especificado'],
+    ['used', 'Usado'],
+  ]);
+
   return {
     author: {
       name: 'Alan',
@@ -23,7 +29,7 @@ export const makeProductDetail = ({
         decimals: makeDecimals(item.price),
       },
       picture: item.pictures[0].url,
-      condition: item.condition,
+      condition: <string>conditions.get(item.condition),
       sold_quantity: item.sold_quantity,
       free_shipping: item.shipping.free_shipping,
       description: description.plain_text,
