@@ -11,7 +11,7 @@ class SearchProductsController implements Controller {
     res: Response
   ): Promise<Response<ProductList>> {
     try {
-      const { data } = await http.get('/sites/MLU/search', {
+      const { data } = await http.get('/sites/MLA/search', {
         params: {
           q: req.query.search,
           limit: 4,

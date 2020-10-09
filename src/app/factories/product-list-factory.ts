@@ -23,6 +23,7 @@ export const makeProductList = (data: SearchProductsResult): ProductList => {
         picture: item.thumbnail,
         condition: item.condition,
         free_shipping: item.shipping.free_shipping,
+        state: item.address.state_name,
       })
     );
   };

@@ -20,6 +20,9 @@ export type Result = {
   shipping: {
     free_shipping: boolean;
   };
+  address: {
+    state_name: string;
+  };
 };
 
 export type SearchProductsResult = {
