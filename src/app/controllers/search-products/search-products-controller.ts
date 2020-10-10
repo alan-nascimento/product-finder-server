@@ -22,7 +22,7 @@ class SearchProductsController implements Controller {
 
       return res.status(200).json(makeProductList(data));
     } catch (error) {
-      return res.status(422).json(error.message);
+      return res.status(422).send(error.message);
     }
   }
 }
