@@ -1,19 +1,13 @@
-import axios from 'axios';
 import { Request, Response } from 'express';
 
-import { http } from '@/config';
 import { Controller } from '@/app/protocols';
 import { makeProductDetail } from '@/app/factories';
+import { getProduct } from '@/services';
 
 class ProductController implements Controller {
   public async handle(req: Request, res: Response): Promise<Response> {
     try {
-      const { id } = req.params;
-
-      const [item, description] = await axios.all([
-        http.get(`/items/${id}`),
-        http.get(`/items/${id}/description`),
-      ]);
+      const { item, description } = await getProduct(req.params.id);
 
       const response = makeProductDetail({
         item: item.data,
