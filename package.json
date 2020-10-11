@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --ignore-watch node_modules src/server.ts",
     "start": "node ./dist/server.js",
-    "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
+    "build": "babel src --ignore *.spec.ts --extensions \".js,.ts\" --out-dir dist --copy-files",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:ci": "npm test -- --coverage --runInBand",
     "test:watch": "npm test -- --watch -c jest-unit.config.js",
