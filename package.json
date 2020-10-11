@@ -1,11 +1,12 @@
 {
   "name": "product-finder-server",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A simple REST API to search for a list of products and provide details of the selected product.",
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --ignore-watch node_modules src/server.ts",
     "start": "node ./dist/server.js",
+    "lint": "eslint src/**/*",
     "build": "babel src --ignore *.spec.ts --extensions \".js,.ts\" --out-dir dist --copy-files",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:ci": "npm test -- --coverage --runInBand",
