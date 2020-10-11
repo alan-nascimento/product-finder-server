@@ -7,7 +7,7 @@
 
 ## Description
 
-> This project is a BFF for [this](https://github.com/alan-nascimento/meli-product-finder) Frontend.
+> This project is a BFF for this [Frontend](https://github.com/alan-nascimento/meli-product-finder).
 
 ## Prerequisites
 
