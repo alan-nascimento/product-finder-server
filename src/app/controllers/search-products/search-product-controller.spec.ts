@@ -1,3 +1,4 @@
+import faker from 'faker';
 import request from 'supertest';
 
 import app from '@/app';
@@ -11,6 +12,19 @@ describe('SearchProducts Controller', () => {
           search: 'iPhone',
         })
         .expect(200);
+    });
+
+    it('should return an empty object if has no products', async () => {
+      const invalidSearchParam = faker.random.uuid();
+
+      await request(app)
+        .get(`/api/items`)
+        .query({
+          search: invalidSearchParam,
+        })
+        .expect((item) => {
+          expect(item.body).toEqual({});
+        });
     });
   });
 });
