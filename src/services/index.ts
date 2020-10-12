@@ -23,3 +23,9 @@ export const getProduct = async (id: string) => {
 
   return { item, description };
 };
+
+export const getProductDetail = async (id: string) => {
+  const { data } = await http.get(`/items/${id}`);
+
+  return data;
+};

@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 import { Controller } from '@/app/protocols';
-import { makeProductDetail } from '@/app/factories';
+import { makeProductDetail } from '@/app/repositories';
 import { getProduct } from '@/services';
 
 class ProductController implements Controller {
@@ -16,7 +16,7 @@ class ProductController implements Controller {
 
       return res.status(200).json(response);
     } catch (error) {
-      return res.status(500).send();
+      return res.status(500).json({ message: error.message });
     }
   }
 }

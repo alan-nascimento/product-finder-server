@@ -1,9 +1,8 @@
 import { Request, Response } from 'express';
 
-import { search } from '@/services';
 import { Controller } from '@/app/protocols';
 import { ProductList } from '@/app/models';
-import { makeProductList } from '@/app/factories';
+import { getProducts } from '@/app/repositories';
 
 class SearchProductsController implements Controller {
   public async handle(
@@ -11,15 +10,15 @@ class SearchProductsController implements Controller {
     res: Response
   ): Promise<Response<ProductList>> {
     try {
-      const data = await search(<string>req.query.search);
+      const data = await getProducts(<string>req.query.search);
 
-      if (!data.paging.total) {
+      if (!data.items.length) {
         return res.json({});
       }
 
-      return res.status(200).json(makeProductList(data));
+      return res.status(200).json(data);
     } catch (error) {
-      return res.status(500).send();
+      return res.status(500).json({ message: error.message });
     }
   }
 }
