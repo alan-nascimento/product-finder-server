@@ -1,3 +1,4 @@
+import { getDecimals } from '@/utils/numbers';
 import { Product, ProductList } from '@/app/models';
 import { getProductDetail, search } from '@/services';
 import { Category, SearchProductsResult } from '@/app/protocols';
@@ -7,10 +8,6 @@ export const getProducts = async (query: string): Promise<ProductList> => {
 
   const getCategories = (categories: Category[]) => {
     return categories?.map((item: Category) => item.name);
-  };
-
-  const getDecimals = (value: number): number => {
-    return Number(value.toString().split('.')[1]) || 0;
   };
 
   const getImage = (item: {

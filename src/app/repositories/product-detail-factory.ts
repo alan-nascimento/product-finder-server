@@ -1,3 +1,4 @@
+import { getDecimals } from '@/utils/numbers';
 import { ProductDetail } from '@/app/models';
 import { ProductDetailResult } from '@/app/protocols';
 
@@ -5,10 +6,6 @@ export const makeProductDetail = ({
   item,
   description,
 }: ProductDetailResult): ProductDetail => {
-  const makeDecimals = (value: number): number => {
-    return Number(value.toString().split('.')[1]) || 0;
-  };
-
   const conditions = new Map([
     ['new', 'Nuevo'],
     ['not_specified', 'No especificado'],
@@ -26,7 +23,7 @@ export const makeProductDetail = ({
       price: {
         amount: Math.trunc(item.price),
         currency: item.currency_id,
-        decimals: makeDecimals(item.price),
+        decimals: getDecimals(item.price),
       },
       picture: item.pictures[0].url,
       condition: <string>conditions.get(item.condition),
