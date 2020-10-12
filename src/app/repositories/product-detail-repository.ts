@@ -1,11 +1,11 @@
+import { getProduct } from '@/services';
 import { getDecimals } from '@/utils/numbers';
 import { ProductDetail } from '@/app/models';
 import { ProductDetailResult } from '@/app/protocols';
 
-export const makeProductDetail = ({
-  item,
-  description,
-}: ProductDetailResult): ProductDetail => {
+export const getProductDetail = async (id: string): Promise<ProductDetail> => {
+  const { item, description }: ProductDetailResult = await getProduct(id);
+
   const conditions = new Map([
     ['new', 'Nuevo'],
     ['not_specified', 'No especificado'],

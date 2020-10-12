@@ -21,7 +21,7 @@ export const getProduct = async (id: string) => {
     http.get(`/items/${id}/description`),
   ]);
 
-  return { item, description };
+  return { item: item.data, description: description.data };
 };
 
 export const getProductDetail = async (id: string) => {
